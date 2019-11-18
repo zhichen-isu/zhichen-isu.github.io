@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<style>
+#container {
+  width: 700px;
+  height: 700px;
+  position: absolute;
+    
+}
+
+#picture {
+  width: 200px;
+  height:256px;
+  position: absolute;
+  
+}
+
+#coffee, #hamburger {
+  width: 200px;
+  height:200px;
+  position: absolute;
+  
+}
+
+
+</style>
+<body>
+<button id='btnGiveCommand'>Place your Order!</button>  <span id='message' style="color:blue" ></span>
+  
+
+<br><br>
+<img id="container" src="wallpaper.jpg" width="700" height="700"/> 
+<img id="hamburger" src="hamburger.jpg" width="200" height="200"/> 
+<img id="coffee" src="coffee_black.jpg" width="200" height="200"/>   
+<img id="picture" src="menu.jpg" width="200" height="256"/>
+
+<br>
+<div id ="container">
+  <div id ="picture"></div>
+  <div id ="coffee"></div>
+  <div id ="hamburger"></div>
+</div>
+    
+    
+<script>
+        var message = document.querySelector('#message');
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+        var grammar = '#JSGF V1.0;'
+        var recognition = new SpeechRecognition();
+        var speechRecognitionList = new SpeechGrammarList();
+        speechRecognitionList.addFromString(grammar, 1);
+        recognition.grammars = speechRecognitionList;
+        recognition.lang = 'en-US';
+        recognition.interimResults = true;
+		recognition.continuous = true;
+		let command = "";
+		let finalTranscript = "";
+        recognition.onresult = function(event) {
+        for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+        let transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript;
+        } else {
+          command = transcript;
+		 
+        };
+      }
+            message.textContent = 'Voice Input: ' + command + '.';
+			let keyword = command.match(/picture|coffee|hamburger/); //returns match results in an array
+			console.log(keyword);
+            if(keyword[0] === "picture"){
+			
+                myMove(1);
+            };
+			if(keyword[0] === "coffee"){
+			
+                myMove(2);
+            };
+			if(keyword[0] === "hamburger"){
+			
+                myMove(3);
+            };
+            console.log(keyword);
+        };
+        recognition.onspeechend = function() {
+            recognition.stop();
+        };
+        recognition.onerror = function(event) {
+            message.textContent = 'Error occurred in recognition: ' + event.error;
+        }        
+        document.querySelector('#btnGiveCommand').addEventListener('click', function(){
+            recognition.start();
+        });
+		
+const replyBank = {
+  picture:["very nice", "good looking", "haha"],
+  coffee:["Here is your coffee", "Here comes your coffee", "Be careful, the coffee is very hot"],
+  hamburger:["Here is your hamburger", "Here comes your hamburger", "Be careful, the hamburger is very hot"]
+};  
+
+ function myMove(x) {
+  let elemId = ["pictures", "coffee", "hamburger"],
+  item = Object.keys(replyBank)
+  newId = item[x];
+  console.log(newId);
+  let elem = document.getElementById(newId);
+  let position = 0;
+  let id = setInterval(frame, 3);
+  function frame() {
+    if (position == 500) {
+      clearInterval(id);
+    } else {
+      position++; 
+      elem.style.top = position + "px"; 
+      elem.style.left = x*position/2 + "px";
+    }
+  }
+  let reply = replyBank[newId][Math.floor(Math.random() * item.length)];
+  console.log(reply);
+  speechSynthesis.speak(new SpeechSynthesisUtterance(reply));
+}
+
+
+/*   put an element to a specific coordiante:
+var domElement = document.getElementById('myElement');// don't go to to DOM every time you need it. Instead store in a variable and manipulate.
+domElement.style.position = "absolute";
+domElement.style.top = 0; //or whatever 
+domElement.style.left = 0; // or whatever
+*/
+
+
+</script>
+
+</body>
+</html>
