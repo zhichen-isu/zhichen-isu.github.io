@@ -105,6 +105,7 @@ function myMove(x) {
   console.log(reply);
   speechSynthesis.speak(new SpeechSynthesisUtterance(reply));
   answer.textContent = "Reply: " + reply + '.';
+  recognition.start();
 }
 
 </script>
