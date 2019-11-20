@@ -21,28 +21,27 @@
   
 }
 </style>
-<img id="container" src="wallpaper.jpg" width="750" height="700"/> 
-<img id="hamburger" src="hamburger.jpg" width="200" height="200"/> 
-<img id="coffee" src="coffee_black.jpg" width="200" height="200"/>   
-<img id="picture" src="menu.jpg" width="256" height="256"/>
-<br><br>
+
+
+<body>
 
 <button id='btnGiveCommand'style="font-size:16px">Place your Order!  <i class="fa fa-microphone"></i></button> 
 <br><br>
 <span id='message' style="color:blue";"font-size:18px" ></span>
 <br><br>
 <span id='answer' style="color:brown";"font-size:18px" ></span>
+<br><br>
+<img id="container" src="wallpaper.jpg" width="750" height="700"/> 
+<img id="hamburger" src="hamburger.jpg" width="200" height="200"/> 
+<img id="coffee" src="coffee_black.jpg" width="200" height="200"/>   
+<img id="picture" src="menu.jpg" width="256" height="256"/>
 
-
-<body>
 <br>
 <div id ="container">
   <div id ="picture"></div>
   <div id ="coffee"></div>
   <div id ="hamburger"></div>
 </div>
-    
-
 
 <script>
 var message = document.querySelector('#message');
@@ -96,20 +95,19 @@ function myMove(x) {
   console.log(reply);
   speechSynthesis.speak(new SpeechSynthesisUtterance(reply));
   answer.textContent = "Reply: " + reply + '.';
-}
+}  
   
-function frame() {
+ function frame() {
   if (position == 500) {
   clearInterval(id);
   } else {
   position++; 
   elem.style.top = position + "px"; 
   elem.style.left = position * x / 2 + "px";
-  }
 }
-  
-  
+   
+
 </script>
 
 </body>
-</html>
+</html> 
