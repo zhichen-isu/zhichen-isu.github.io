@@ -21,21 +21,9 @@
   
 }
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
 <body>
-
-<button id='btnGiveCommand'style="font-size:16px">Place your Order!  <i class="fa fa-microphone"></i></button> 
-<br><br>
-<span id='message' style="color:blue";"font-size:18px" ></span>
-<br><br>
-<span id='answer' style="color:brown";"font-size:18px" ></span>
-<br><br>
-<img id="container" src="wallpaper.jpg" width="750" height="700"/> 
-<img id="hamburger" src="hamburger.jpg" width="200" height="200"/> 
-<img id="coffee" src="coffee_black.jpg" width="200" height="200"/>   
-<img id="picture" src="menu.jpg" width="256" height="256"/>
-
 <br>
 <div id ="container">
   <div id ="picture"></div>
@@ -43,6 +31,19 @@
   <div id ="hamburger"></div>
 </div>
     
+<img id="container" src="wallpaper.jpg" width="750" height="700"/> 
+<img id="hamburger" src="hamburger.jpg" width="200" height="200"/> 
+<img id="coffee" src="coffee_black.jpg" width="200" height="200"/>   
+<img id="picture" src="menu.jpg" width="256" height="256"/>
+<br><br>
+
+<button id='btnGiveCommand'style="font-size:16px">Place your Order!  <i class="fa fa-microphone"></i></button> 
+<br><br>
+<span id='message' style="color:blue";"font-size:18px" ></span>
+<br><br>
+<span id='answer' style="color:brown";"font-size:18px" ></span>
+
+
 <script>
 var message = document.querySelector('#message');
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
