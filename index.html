@@ -91,22 +91,25 @@ function myMove(x) {
   let elem = document.getElementById(newId);
   let position = 0;
   let id = setInterval(frame, 3);
-  
-  function frame() {
-    if (position == 500) {
-      clearInterval(id);
-    } else {
-      position++; 
-      elem.style.top = position + "px"; 
-      elem.style.left = position * x / 2 + "px";
-    }
-  }
   let reply = replyBank[newId][Math.floor(Math.random() * item.length)];
   console.log(reply);
   speechSynthesis.speak(new SpeechSynthesisUtterance(reply));
   //
   answer.textContent = "Reply: " + reply + '.';
+  
 }
+  
+function frame() {
+  if (position == 500) {
+  clearInterval(id);
+  } else {
+  position++; 
+  elem.style.top = position + "px"; 
+  elem.style.left = position * x / 2 + "px";
+  }
+}
+  
+
   
 </script>
 
