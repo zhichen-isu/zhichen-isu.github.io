@@ -137,9 +137,9 @@ recognition.onresult = function(event) {
       //answer.textContent = "Reply: " + replyTotal + ".";
 	}
 		
-	
 	document.getElementById("bill").value = " $ " + bill;
   }	
+    setTimeout(function(){document.getElementById('btnGiveCommand').click();},3000);
 }    
 
 recognition.onspeechend = function() {
